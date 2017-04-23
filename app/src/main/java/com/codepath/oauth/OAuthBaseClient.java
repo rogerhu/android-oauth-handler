@@ -190,4 +190,12 @@ public abstract class OAuthBaseClient {
         public void onLoginFailure(Exception e);
     }
 
+    public void setLoggingEnabled(Boolean enabled) {
+        client.setLoggingEnabled(enabled);
+    }
+
+    public void setLogLevel(int loglevel) {
+        client.setLoggingLevel(loglevel);
+    }
+
 }
