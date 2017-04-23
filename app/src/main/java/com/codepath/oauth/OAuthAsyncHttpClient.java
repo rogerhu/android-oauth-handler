@@ -69,7 +69,7 @@ public class OAuthAsyncHttpClient extends AsyncHttpClient {
                 if (e != null) {
                     handler.onFailure(e);
                 } else {
-                    handler.onReceivedRequestToken(requestToken, authorizeUrl);
+                    handler.onReceivedRequestToken(requestToken, authorizeUrl, Integer.valueOf(service.getVersion()));
                 }
             }
         });
@@ -116,7 +116,7 @@ public class OAuthAsyncHttpClient extends AsyncHttpClient {
                     handler.onFailure(e);
                 } else {
                     setAccessToken(accessToken);
-                    handler.onReceivedAccessToken(accessToken);
+                    handler.onReceivedAccessToken(accessToken, Integer.valueOf(service.getVersion()));
                 }
             }
         });
@@ -164,8 +164,8 @@ public class OAuthAsyncHttpClient extends AsyncHttpClient {
     
     // Defines the interface handler for different token handlers
     public interface OAuthTokenHandler {
-        public void onReceivedRequestToken(Token requestToken, String authorizeUrl);
-        public void onReceivedAccessToken(Token accessToken);
+        public void onReceivedRequestToken(Token requestToken, String authorizeUrl, int oAuthVersion);
+        public void onReceivedAccessToken(Token accessToken, int oAuthVersion);
         public void onFailure(Exception e);
     }
 }
